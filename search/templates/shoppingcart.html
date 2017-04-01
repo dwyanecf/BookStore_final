@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <div class="col-sm-12 title">
+	<img src="{%static "images/cart.gif"%}" alt="" >
+	<p2>My shopping cart</p>
+</div>
+<div class="col-sm-10">
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Book name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+		<th>Subtotal</th>
+		<th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+		{% for item in cart.items %}
+			<tr>
+			<td>{{item.product.title}}</td>
+			<td>
+				<form method="GET" action="http://127.0.0.1:8000/shoppingcart/change_item_quantity/">
+					<button class="category_name" name="quantity_change_minus" value="{{item.product.isbn}}">
+						<img src="{%static "images/minus.png"%}" alt="" width="16px">
+					</button>
+					&nbsp&nbsp&nbsp{{item.quantity}}&nbsp&nbsp&nbsp
+					<button class="category_name" name="quantity_change_add" value="{{item.product.isbn}}">
+						<img src="{%static "images/add.png"%}" alt="" width="16px">
+					</button>
+				</form>
+			</td>
+			<td>{{item.unit_price}}</td>
+			<td>{% widthratio item.quantity 1 item.unit_price %} </td>
+			<td><form method="GET" action="http://127.0.0.1:8000/shoppingcart/remove_item/">
+					<button class="category_name" name="isbn" value="{{item.product.isbn}}">
+						<img src="{%static "images/delete.png"%}" alt="" width="18px">
+					</button>
+				</form>
+			</td>
+			</tr>
+		{% endfor %}
+	  <tr>
+			<th></th>
+			<td></td>
+			<th>Total：</th>
+			<th>$ {{cart.total_price}}</th>
+		</tr>
+		<tr>
+			<th></th>
+			<td></td>
+			<form action="http://127.0.0.1:8000/shoppingcart/clean/">
+				<th><button type="submit" class="btn btn-primary" >Clear all</button></th>
+			</form>
+			<form action="http://127.0.0.1:8000/shoppingcart/checkout/">
+				<th><button type="submit" class="btn btn-primary">Check out</button></th>
+			</form>			
+		</tr>
+    </tbody>
+  </table>
+</div>  
+{% endblock %}

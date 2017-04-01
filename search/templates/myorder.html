@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+{%if not username %}
+	<div class="col-sm-12 title">
+		<p2>Please log in first!</p2>
+	</div>
+{%else%}
+	<div class="col-sm-12 title">
+		<img src="{%static "images/cart.gif"%}" alt="">
+		<p2>My orders</p2>
+	</div>
+	<div>
+		{% csrf_token %}
+			{{uf.as_p}}
+				{% for order in orders %}
+				<form method = 'GET' action="http://127.0.0.1:8000/remove_order/" >
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<table width="100%">
+							<tr>
+								<td><p > Order Id: {{ order.order_id }}</p></td>
+								<td><p > Date: {{ order.order_date}}</p></td>
+								<td><p > Total Price: ${{ order.total_price}}</p></td>
+								<td>
+									<form method="GET" action="http://127.0.0.1:8000/remove_order/">
+										<button class="category_name" type="submit" name="orderid" id="orderid" value="{{order.order_id}}">
+											<img src="{%static "images/delete.png"%}" alt="" width="18px">
+										</button>
+									</form>
+								</td>
+								
+							</tr>
+						</table>
+						
+					</div>
+					<div class="panel-body">
+						<table>
+							<tr>
+								<th style="width: 25%">Book Isbn</th>
+								<th style="width: 10%;">Quantity</th>
+								
+							</tr>
+					
+							{% for result in results %}
+								{% if result.order_id == order.order_id %}
+									
+											<tr>
+												<td><p > {{ result.isbn}}</p></td>
+												<td><p>{{ result.quantity}} </p></td>
+											</tr>
+								
+								{% endif %}								
+							{% endfor %}
+						</table>
+					</div>
+				</div>							
+				{% endfor %}							
+					</form>
+	</div>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if results.has_previous %}
+			<a href="?keyword={{ req.REQUEST.keyword }}&page={{ results.previous_page_number }}">previous</a>
+		{% endif %}
+
+		<span class="current">
+			Page {{ results.number }} of {{ results.paginator.num_pages }}.
+		</span>
+
+		{% if results.has_next %}
+			<!-- <a href="?page={{ results.next_page_number }}">next</a> -->
+			<a href="?keyword={{ req.REQUEST.keyword }}&page={{ results.next_page_number }}">next</a>
+		{% endif %}
+	</span>
+</div>
+{%endif%}
+	
+{% endblock %}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>BookFan-An online book store</title>
+	<meta charset="utf-8">
+	{% load static %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "BookFan.css" %}" />
+	<link href="{% static "images/logo.png" %}" type="image/png" rel="shortcut icon"/>
+	<script src="{% static "js/store.js" %}"></script>
+</head>
+<body>
+
+<div class="whole">
+	<div class="col-sm-1">
+    </div>
+	<div class="col-sm-10">
+
+		<div class="header ">
+			<div class="logo"><img src="{%static "images/logo.gif"%}" alt="" title="" border="0" /></a></div>
+			<div id="header_menu">
+				<ul>                                                                       
+					<li class="selected"><a href="http://127.0.0.1:8000">Home</a></li>
+					{%if request.session.username %}
+					<li><a href="">welcome, {{request.session.username}}!</a></li>
+					<li><a href="http://127.0.0.1:8000/logout/">Log out</a></li>
+					{%else%}
+					<li><a href="http://127.0.0.1:8000/login/">Sign in</a></li>
+					<li><a href="http://127.0.0.1:8000/register/">Register</a></li>
+					{%endif%}
+					
+					<li><a href="http://127.0.0.1:8000/myorder/">My orders</a></li>
+					<li><a href="http://127.0.0.1:8000/profile/">My Profile</a></li>
+					<li><a href="">About us</a></li>
+					
+				</ul>
+			</div>  
+		</div >
+		<div class="main_body">
+			<div class="col-sm-2 main_left">
+				<div class="text-center">
+					<img src="{%static "images/logo.png"%}" />
+				</div>
+			</br/>
+				{% for category in category_list %}
+					<div class="homepage_category">
+						<form method = 'GET' action="http://127.0.0.1:8000/searchresult/" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{uf.as_p}}
+							<button type="submit" class="category_name" name="category" value="{{ category.type_id}}"><img src="{%static "images/bullet2.gif"%}" alt="bullet1" >  {{ category.type_name}}</button>
+							<img class="border_pic" src="{%static "images/border.gif"%}" alt="" border="0" width="80%"/>
+						</form>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="col-sm-7 main_center">
+				<div class="form-group search_div">
+                <div class="icon-addon addon-md">
+						<form method = 'GET' action="http://127.0.0.1:8000/searchresult/" enctype="multipart/form-data">
+							{% csrf_token %}
+							<table width="100%">
+							<tr>
+								<td width="70%">
+									<input type="text" placeholder="Input a book's title, author, ISBN, or categroy" name="keyword" class="form-control">
+									<label for="search" class="glyphicon glyphicon-search" rel="tooltip" title="search"></label>
+								</td>
+								<td width="30%"><button type="submit" class="btn btn-primary" id="search_button" onclick="CheckKeyword()">Search</button></td>
+							</tr>
+							</table>							
+					</form>
+                </div>
+				</div>
+				{% block content %}
+				{% endblock %}
+				
+			</div>
+			<div class="col-sm-2 main_right">
+				<br/><br/><br/>
+				<div class="col-sm-12 title">
+					<img src="{%static "images/cart.gif"%}" alt="" >
+					<p2>Shopping cart <a href="http://127.0.0.1:8000/shoppingcart/">{{ request.session.cart.total_quantity }}</a></p2>
+				</div>
+				<div class="text-center">
+					<form action="http://127.0.0.1:8000/shoppingcart/checkout/">
+						<button type="submit" class="btn btn-primary">Check out</button>
+					</form>	
+				</div>
+			</div>	
+		</div>
+		<div class="col-sm-12 footer text-center vertical-align=center">
+				<br/>©2016 - 2016 BookFan All Rights Reserved.<br/>
+		</div>
+
+	</div>
+	<div class="col-sm-1">
+    </div>
+</div>
+</body>
+</html>

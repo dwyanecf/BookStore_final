@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div>
+<div class="col-sm-12">
+	<div class="col-sm-12 title">
+		<img src="{%static "images/cart.gif"%}" alt="" >
+		<p2>Check out</p2>
+		<br/><br/>
+	</div>
+	<div class="col-sm-10">
+		<form method = 'GET' action="http://127.0.0.1:8000/shoppingcart/submitorder/" name="order_form">
+		{% csrf_token %}
+		<table width="90%">
+			<tr>
+				<td width="25%">
+					<label for="shipping_address">Shipping address: </label>
+				</td>
+
+				<td colspan="2">
+					<input type="text" class="form-control" name="shipping_address" id="shipping_address" placeholder="Enter your complete address">
+				</td>
+			</tr>
+			<tr>
+				<td><br/></td>
+			</tr>
+			<tr>
+				<td width="15%">
+					<label for="contact_phone">Phone:</label>
+				</td>
+				<td colspan="2">
+					<input type="text" class="form-control" id="contact_phone" name="contact_phone" placeholder="Enter your 11-digit phone number">
+				</td>
+			</tr>
+			<tr>
+				<td><br/></td>
+			</tr>
+			<tr>
+				<td>
+					<label for="message">Message:</label>
+				</td>
+				<td colspan="2">
+					<textarea class="form-control" rows="5" name="message"id="message"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td><br/></td>
+			</tr>
+			<tr align="right">
+				<td>
+					<p class="title">Total items: <a href="http://127.0.0.1:8000/shoppingcart/">{{ request.session.cart.total_quantity }}</a></p>
+				</td>
+				<td>
+					<p class="title">Total price: $ {{ request.session.cart.total_price}}</p>
+				</td>
+				<td>
+					<button type="submit" class="btn btn-primary">Submit Order</button>
+				</td>
+			</tr>	
+		</table>
+  </form>
+</div>	
+</div>
+</div>
+{% endblock %}

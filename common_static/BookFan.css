@@ -1,0 +1,238 @@
+body{
+	background-image:url("images/main_background.png");
+}
+.ssbtn{
+	background-color:#994d00;
+	border-color:#804000;
+}
+.header{
+	height:181px;
+	background-image:url("images/header.jpg");
+	background-repeat: repeat-x;
+}
+.main_left{
+	/* background-image:url("images/side_bg.png"); */
+	background-color:white;
+	border:solid 1px #993300;
+	height:1200px;
+	width:16%;
+	padding:5px 5px 5px 5px;
+	margin:5px 0 0 0;
+}
+.main_center{
+	/* background-image:url("images/center_bg.png"); */
+	/* background-repeat: repeat-xy; */
+	background-color:white;
+	border:solid 1px #993300;
+	height:1200px;
+	width:66.6%;
+	padding:15px 15px 15px 15px;
+	margin:5px 5px 0.5% 0.5%;
+}
+.main_right{
+	/* background-image:url("images/side_bg.png"); */
+	background-color:white;
+	height:1200px;
+	width:15.9%;
+	border:solid 1px #993300;
+	padding:5px 5px 5px 5px;
+	margin:5px 5px 0 0;
+}
+.footer{
+	background-color:#994d00;
+}
+.border_pic{
+	width:100%;
+}
+.categroy{
+	margin:10px;
+}
+.title{
+color:#662200;
+padding:0px;
+float:left;
+font-size:19px;
+margin:10px 0 10px 0;
+}
+.search_result_box{
+border:solid 1px #993300;
+padding:10px;
+width:200px;
+height:270px;
+margin:10px 10px 10px 10px;
+float:left;
+}
+.homepage_book_box{
+/* border:solid 1px #993300; */
+background-color:#f2f2f2;
+padding:10px;
+width:23%;
+height:250px;
+margin:1% 1% 1% 1%;
+float:left;
+}
+.publisher_year{
+	font-size:10pt;
+}
+.price{
+	font-size:14pt;
+	color:red;
+	vertical-align:bottom;
+	padding:0px;
+	margin:0 0 0 0;
+}
+.pagination_words{
+	font-size:12pt;
+	text-align:center;
+}
+.category_name{
+	background:none!important;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    /*border is optional*/
+    /* border-bottom:1px solid #444;  */
+    cursor: pointer;	
+}
+.order_box{
+	border:solid 1px #993300;
+	padding:10px;
+}
+/*-----------------------------search bar-------------------*/
+.search_div{
+	padding:20px 0 0 0;
+}
+.center-block {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 18px;
+    padding: 10px 16px 10px 40px;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .glyphicon {
+    font-size: 18px;
+    margin-left: 0;
+    left: 11px;
+    top: 4px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .glyphicon {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus + .glyphicon,
+.icon-addon:hover .glyphicon,
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}
+
+
+
+
+/*-----------------------------header_menu-------------------*/
+#header_menu{
+height:30px;
+padding:105px 0 0 10px;
+
+}
+#header_menu ul{
+display:block;
+list-style:none;
+padding:9px 0 0 10px;
+margin:0px;
+}
+#header_menu ul li{
+display:inline;
+padding:0px;
+margin:0px;
+height:20px;
+}
+#header_menu ul li a{
+height:27px;
+display:block;
+padding:0px 10px 0 10px;
+margin:0 4px 0 4px;
+_margin:0 2px 0 2px;
+float:left;
+text-decoration:none;
+text-align:center;
+color:#fff;
+font-size:13px;
+line-height:25px;
+}
+#header_menu ul li.selected a{
+height:27px;
+display:block;
+padding:0px 10px 0 10px;
+margin:0 5px 0 5px;
+float:left;
+text-decoration:none;
+text-align:center;
+color:#f7a849;
+font-size:13px;
+line-height:25px;
+}
+#header_menu ul li a:hover{
+color:#f7a849;
+}

@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 09 21:24:57 2016
+
+@author: Darren
+"""
+from django.http import JsonResponse
+import MySQLdb
+from django.shortcuts import render,render_to_response
+from django.views.decorators.csrf import csrf_exempt
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import datetime
+
+def SetBookStatus(request):
+    Isbn=request.POST['Isbn']
+    Quantity=request.POST['availablity']*99
+    sql_query_has_book='SELECT * FROM BOOK WHERE BOOK.Isbn={0};'.format(Isbn)
+    sql_query_update='UPDATE BOOK SET Quantity="{0}" WHERE Isbn={1};'.format(Quantity,Isbn)
+    try:
+        conn=MySQLdb.connect("localhost",'root','root','Store',port=3306)
+        cur=conn.cursor()
+        cur.execute(sql_query_has_book)
+        conn.commit()
+        result=cur.fetchall()
+        if(len(result)==0):
+            result=["Incorrect ISBN!"]
+            return JsonResponse(result,safe=False)
+        cur.execute(sql_query_update)
+        conn.commit()
+        cur.close()
+        conn.close()
+        return JsonResponse("Status update sucess!",safe=False)
+    except MySQLdb.Error,e:
+        result=["Failed to connect to MySQL:%d:%s" %(e.args[0],e.args[1])]
+        return JsonResponse(result,safe=False)

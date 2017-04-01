@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<div>
+	{% if keyword %}
+		<h4>Searching result for "{{keyword}}":</h4>
+	{% endif%}
+	{% if category %}
+		<h4>Searching result for "{{category_record.type_name}}":</h4>
+	{% endif%}
+</div>
+<div>
+	{% for result in results %}
+		<div class="search_result_box">
+			<form method = 'GET' action="http://127.0.0.1:8000/shoppingcart/add/" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{uf.as_p}}
+				<table>
+					<tr>
+						<td style="text-align:center;"><img src="{{ result.cover}}" class="img-thumbnail" alt="" ></td>
+					</tr>
+					<tr>
+						<td><p class="price">$ {{ result.price}}</p></td>
+					</tr>
+					<tr>
+						<td style="text-align:center;"><a href="">{{ result.title|slice:":30" }}...</a></td>
+					</tr>
+					<tr>
+						<td style="text-align:center;"><p>{{ result.publisher|slice:":15"}} | {{ result.pubdate|date:"Y"}}</p></td>
+					</tr>
+					<tr>
+						<td style="text-align:center;"><button type="submit" class="btn btn-default btn-sm" name="isbn" value="{{result.isbn}}" ><img src="{%static "images/cart.gif"%}">  Add to cart</button></td>
+					</tr>			
+				</table>							
+			</form>
+		</div>
+	{% endfor %}
+</div>
+<div class="pagination" style="text-align:center;">
+	<span class="step-links pagination_words">
+		{% if results.has_previous %}
+			{% if keyword %}
+				<a href="?keyword={{ keyword }}&page={{ results.previous_page_number }}">Previous</a>
+			{% endif %}
+			{% if category %}
+				<a href="?category={{ category }}&page={{ results.previous_page_number }}">Previous</a>
+			{% endif %}
+		{% endif %}
+		<span class="current">
+			Page {{ results.number }} of {{ results.paginator.num_pages }}.
+		</span>
+
+		{% if results.has_next %}
+			<!-- <a href="?page={{ results.next_page_number }}">next</a> -->
+			{% if keyword %}
+				<a href="?keyword={{ keyword }}&page={{ results.next_page_number }}">Next</a>
+			{% endif %}
+			{% if category %}
+				<a href="?category={{ category }}&page={{ results.next_page_number }}">Next</a>
+			{% endif %}
+		{% endif %}
+	</span>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<h2>Update your profiles</h2>
+	<form method = 'post' enctype="multipart/form-data">
+		{% csrf_token %}
+		{{uf.as_p}}
+		<button type="submit" class="btn btn-primary" >Make Change</button>
+	</form>
+	<br>
+	<div>
+		<h4 style="color:red;">{{ error_msg }}</h4>
+	</div>
+	<div>
+		<p>Already have an account? Log in now <a href="http://127.0.0.1:8000/login/" class="btn btn-primary" role="button">Log in</a></p>
+	</div>
+	
+{% endblock %}

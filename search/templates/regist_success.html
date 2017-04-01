@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>BookFan-An online book store</title>
+	<meta charset="utf-8">
+	{% load static %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "BookFan.css" %}" />
+<!-- 	<link rel="stylesheet" type="text/css" href="{% static "css/login_style_cf.css" %}" /> -->
+	<script type="text/javascript" src="{% static "login.js" %}"></script>
+</head>
+<body>
+
+<div class="whole">
+	<div class="col-sm-1">
+    </div>
+	<div class="col-sm-10">
+
+		<div class="header ">
+			<div class="logo"><img src="{%static "images/logo.gif"%}" alt="" title="" border="0" /></a></div>
+			<div id="header_menu">
+				<ul>                                                                       
+					<li class="selected"><a href="index.html">Home</a></li>
+					<li><a href="">Display user name here</a></li>
+					<li><a href="">Sign in/Register</a></li>
+					<li><a href="">Log out</a></li>
+					<li><a href="">My orders</a></li>
+					<li><a href="">Customer service</a></li>
+					<li><a href="">About us</a></li>
+				</ul>
+			</div>  
+		</div >
+		<div class="main_body">
+			<div class="col-sm-2 main_left" >
+				
+			</div>
+				<div class="col-sm-8 main_center text-align:center">
+				<br><br><br><br><br>
+					<h4>You have registered successfully! Going to sign in now...</h4>
+					<script>
+						window.setTimeout(function(){
+						window.location.href = "http://127.0.0.1:8000/login/";
+						}, 3000);
+					</script>					
+					<br>
+					If you are not redirecting, click 
+					<a href="http://127.0.0.1:8000/login/">here</a>
+			</div>
+			<div class="col-sm-2 main_right">
+			</div>	
+		</div>
+		<div class="col-sm-12 footer text-center">
+				All copyrights reserved
+		</div>
+
+	</div>
+	<div class="col-sm-1">
+    </div>
+</div>
+</body>
+</html>
